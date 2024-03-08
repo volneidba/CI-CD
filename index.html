@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Flavio Schutzer de Godoy</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script>
+        function toggleLanguage() {
+            var langElements = document.querySelectorAll("[data-lang]");
+                        
+            langElements.forEach(function(element) {
+                var currentLang = element.getAttribute("data-lang");
+                var translatedText = "";
+                            
+                if (currentLang === "pt") {
+                translatedText = element.getAttribute("data-en");
+                element.setAttribute("data-lang", "en");
+                } else {
+                translatedText = element.getAttribute("data-pt");
+                element.setAttribute("data-lang", "pt");
+                }
+                            
+                element.textContent = translatedText;
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <button class="language-toggle" onclick="toggleLanguage()" data-lang="en" data-pt="Switch to english" data-en="Mudar para Português">Mudar para Português</button>
+            <h1 data-lang="en" data-en="Curriculum Vitae" data-pt="Currículo">Curriculum Vitae</h1>
+            <p data-lang="en" data-en="A DevOps Manager" data-pt="Um Engenheiro DevOps e Desenvolvedor Full-Stack.">A DevOps Engineer and Full-Stack Developer.</p>
+        </header>
+        
+        <div class="columns">
+            <div class="column">
+                <section id="about-me">
+                    <h2 data-lang="en" data-en="About Me" data-pt="Sobre Mim">About Me</h2>
+                    <p data-lang="en" data-en="Working at São Carlos"</p>
+                </section>
+    
+                <section id="skills">
+                    <h2 data-lang="en" data-en="Skills" data-pt="Habilidades">Skills</h2>
+                    <ul>
+                        
+                        <li data-lang="en" data-en="Strong knowledge of Docker and Kubernetes" data-pt="Conhecimento sólido em Docker e Kubernetes">Strong knowledge of Docker and Kubernetes</li>
+                        <li data-lang="en" data-en="Working with databases like Postgres" data-pt="Trabalhando com bancos de dados como Postgres">Working with databases like Postgres</li>
+                        
+                    </ul>
+                </section>
+    
+                <section id="contribution">
+                    <h2 data-lang="en" data-en="Contribution" data-pt="Contribuição">Contribution</h2>
+                    <p data-lang="en" data-en="Contribuição 01"</p>
+                </section>
+            </div>
+    
+            <div class="column">
+                <section id="education">
+                    <h2 data-lang="en" data-en="Education" data-pt="Educação">Education</h2>
+                    <ul>
+                        <li>
+                            <h3 data-lang="en" data-en="University of São Paulo" data-pt="Universidade de São Paulo">University of São Paulo</h3>
+                            <p data-lang="en" data-en="Degree in Exact Sciences" data-pt="Licenciatura em Ciências Exatas">Degree in Exact Sciences</p>
+                            <p data-lang="en" data-en="Year of completion: 2015" data-pt="Ano de conclusão: 2015">Year of completion: 2015</p>
+                        </li>
+                        <!-- Add other institutions and courses as necessary -->
+                    </ul>
+                </section>
+    
+                <section id="certifications">
+                    <h2 data-lang="en" data-en="Certifications" data-pt="Certificações">Certifications</h2>
+                    <ul>
+                        <li data-lang="en" data-en="Azure Fundamentals AZ-900 (2022)" data-pt="Azure Fundamentals AZ-900 (2022)">Azure Fundamentals AZ-900 (2022)</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    
+        <footer>
+            <p data-lang="en" data-en="Contact: volnei.garcia@gmail.com | +55 11 99296-7484" data-pt="Contato: volnei.garcia@gmail.com | +55 11 99296-7484">Contact: volnei.garcia@gmail.com | +55 11 99296-7484</p>
+            <p data-lang="en" data-en="São Carlos - Brazil" data-pt="Endereço: São Carlos - Brazil">Address: São Carlos - Brazil</p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/flaviosgodoy/">Flavio Schutzer de Godoy</a></p>
+            <p>GitHub: <a href="https://github.com/volneidba/">volneidba</a></p>
+        </footer>
+    </div>
+</body>
+</html>
