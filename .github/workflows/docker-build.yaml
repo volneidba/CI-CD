@@ -30,11 +30,30 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-buildx-
 
-    - name: Build and Push Docker image
+    - name: Build Docker image
+      id: docker_build
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        push: false
+        tags: volneidba/docker_image_portifolio:temp
+        cache-from: type=local,src=/tmp/.buildx-cache
+        cache-to: type=local,dest=/tmp/.buildx-cache
+
+    - name: Push Docker image with run number
       uses: docker/build-push-action@v2
       with:
         context: .
         push: true
-        tags: volneidba/docker_image_portifolio:${{ github.run_number }}, volneidba/docker_image_portifolio:latest
-        cache-from: type=local,src=/tmp/.buildx-cache
-        cache-to: type=local,dest=/tmp/.buildx-cache
+        tags: volneidba/docker_image_portifolio:${{ github.run_number }}
+        load: true
+        images: ${{ steps.docker_build.outputs.digest }}
+
+    - name: Push Docker image with latest tag
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        push: true
+        tags: volneidba/docker_image_portifolio:latest
+        load: true
+        images: ${{ steps.docker_build.outputs.digest }}
