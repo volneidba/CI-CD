@@ -19,41 +19,16 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
     
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v1
-
-    - name: Cache Docker layers
-      uses: actions/cache@v2
-      with:
-        path: /tmp/.buildx-cache
-        key: ${{ runner.os }}-buildx-${{ github.sha }}
-        restore-keys: |
-          ${{ runner.os }}-buildx-
-
-    - name: Build Docker image
-      id: docker_build
-      uses: docker/build-push-action@v2
-      with:
-        context: .
-        push: false
-        tags: volneidba/docker_image_portifolio:temp
-        cache-from: type=local,src=/tmp/.buildx-cache
-        cache-to: type=local,dest=/tmp/.buildx-cache
-
-    - name: Push Docker image with run number
+    - name: Build and Push Docker image
       uses: docker/build-push-action@v2
       with:
         context: .
         push: true
         tags: volneidba/docker_image_portifolio:${{ github.run_number }}
-        load: true
-        images: ${{ steps.docker_build.outputs.digest }}
 
-    - name: Push Docker image with latest tag
+    - name: Build and Push Docker image
       uses: docker/build-push-action@v2
       with:
         context: .
         push: true
         tags: volneidba/docker_image_portifolio:latest
-        load: true
-        images: ${{ steps.docker_build.outputs.digest }}
