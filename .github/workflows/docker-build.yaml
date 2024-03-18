@@ -25,3 +25,11 @@ jobs:
         context: .
         push: true
         tags: volneidba/docker_image_portifolio:${{ github.run_number }}
+
+  # Novo passo para criar ou atualizar a versão latest
+    - name: Create or Update Latest Image
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        push: true
+        tags: volneidba/docker_image_portifolio:latest
